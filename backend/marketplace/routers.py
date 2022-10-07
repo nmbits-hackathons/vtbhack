@@ -6,12 +6,11 @@ from fastapi import (
     HTTPException
 )
 
-
-
 router = APIRouter(
     prefix='/marketplace',
     tags=['marketplace'],
 )
+
 
 @router.get('/marketplace/')
 def get_market():

@@ -5,25 +5,31 @@ from fastapi import (
     Request,
     HTTPException
 )
-
-from database.models import BaseUser
-from user.base_adapter import UserDatabaseAdapter
+from events.base_adapter import EventsDatabaseAdapter
+from database.models import BaseEvent, ResponseEvent
 
 router = APIRouter(
     prefix='/events', tags=['events']
 )
 
 
-@router.post('/create_post/', status_code=201)
-def create_post():
-    return 'test'
+@router.post('/create_event/', status_code=201)
+def create_post(event_model: BaseEvent):
+    event_id = EventsDatabaseAdapter.create_event(event_model=event_model)
+    return {f"new evnt created with id: {event_id}"}
 
 
-@router.put('/update_post/', status_code=201)
+@router.get('/get_events/', status_code=201)
+def get_events(left:int, right:int):
+    return EventsDatabaseAdapter.get_events_list(left,right)
+
+
+@router.put('/update_evnt/', status_code=201)
 def update_post():
     return 'test'
 
 
-@router.delete('/delete_post/', status_code=201)
-def delete_post(post_id: int):
-    return 'test'
+@router.delete('/delete_evnt/', status_code=201)
+def delete_post(evnet_id: int):
+    EventsDatabaseAdapter.delete_event(evnet_id)
+    return {'envent deleted'}

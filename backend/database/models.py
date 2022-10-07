@@ -32,10 +32,10 @@ class DataUser(Base):
     private_key = Column(String)
 
     name = Column(String)
-    email = Column(String, unique=True)
+    email = Column(String)  # unique=True)
 
 
-class DataPost(Base):
+class DataEvent(Base):
     __tablename__ = 'Post'
 
     id = Column(Integer, primary_key=True)
@@ -71,12 +71,19 @@ class BaseUser(BaseModel):
         orm_mode = True
 
 
+class ResponseUser(BaseUser):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
 class UserSeries(BaseModel):
     number_of_users: int = 0
-    series: List[BaseUser] = []
+    series: List[ResponseUser] = []
 
 
-class BasePost(BaseModel):
+class BaseEvent(BaseModel):
     title: str
     description: Optional[str]
     date_publication: Optional[datetime.datetime]
@@ -84,3 +91,18 @@ class BasePost(BaseModel):
     creator: Optional[int]  # id of creator user
     type: Optional[str]
     reward: Optional[int]
+
+    class Config:
+        orm_mode = True
+
+
+class ResponseEvent(BaseEvent):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
+class EventSeries(BaseModel):
+    number_of_events: int = 0
+    series: List[ResponseEvent] = []

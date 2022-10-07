@@ -402,3 +402,6 @@ storybook-static
 
 
 *.idea
+
+
+backend/venv

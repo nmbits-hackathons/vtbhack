@@ -10,7 +10,7 @@ from sqlalchemy import and_
 class UserDatabaseAdapter:
     @staticmethod
     def create_user(user_model: BaseUser) -> int:
-        print('call create_user fun\n',user_model)
+        print('call create_user fun\n', user_model)
         with create_session() as session:
             user = DataUser(**user_model.dict())
             session.add(user)
@@ -22,7 +22,6 @@ class UserDatabaseAdapter:
     def delete_user(user_id: int) -> None:
         with create_session() as session:
             user = session.query(DataUser).filter(DataUser.id == user_id).delete()
-
 
     @staticmethod
     def update_user(user_id: int) -> None:
@@ -39,11 +38,12 @@ class UserDatabaseAdapter:
         return post
 
     @staticmethod
-    def get_users_list(left:int,right:int) -> Union[BaseUser, None]:
+    def get_users_list(left: int, right: int) -> Union[BaseUser, None]:
         with create_session() as session:
             data_list = session.query(DataUser)[left:right]
             user_series = UserSeries()
             for data_user in data_list:
                 user_series.series.append(BaseUser.from_orm(data_user))
+                user_series.number_of_users += 1
 
         return user_series

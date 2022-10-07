@@ -25,6 +25,18 @@ class DataUser(Base):
     private_key = Column(String)
 
 
+class DataMarketplaceItem(Base):
+    __tablename__ = 'Market'
+
+    id = Column(Integer, primary_key=True)
+
+    type = Column(String)
+    title = Column(String)
+    description = Column(String)
+    date = Column(String)
+    cost = Column(Integer)
+    photo = Column(String)
+
 Base.metadata.create_all(engine)
 
 
@@ -42,3 +54,15 @@ class BaseUser(BaseModel):
 class UserSeries(BaseModel):
     number_of_users: int = 0
     series: List[BaseUser] = []
+
+
+class BaseMarketplaceItem(BaseModel):
+    type: str
+    title: str
+    description: str
+    date: str
+    cost: int
+    photo: str
+
+    class Config:
+        orm_mode = True

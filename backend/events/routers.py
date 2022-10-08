@@ -16,6 +16,7 @@ router = APIRouter(
 @router.post('/create_event/', status_code=201)
 def create_post(event_model: BaseEvent):
     event_id = EventsDatabaseAdapter.create_event(event_model=event_model)
+    event_id += 1
     return {f"new evnt created with id: {event_id}"}
 
 

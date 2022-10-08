@@ -10,7 +10,7 @@ from database.models import BaseUser
 from database.models import BaseMarketplaceItem
 from marketplace.market_base_adapter import MarketDatabaseAdapter
 from user.routers import get_user_by_id
-from crypto.routers import buy_nft
+from crypto.instructions import buy_nft
 
 router = APIRouter(
     prefix='/marketplace',

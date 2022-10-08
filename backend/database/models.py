@@ -34,6 +34,8 @@ class DataUser(Base):
     name = Column(String)
     email = Column(String)  # unique=True)
 
+    events_count = Column(Integer)
+
 
 class DataEvent(Base):
     __tablename__ = 'Post'
@@ -81,6 +83,8 @@ class BaseUser(BaseModel):
 
     name: str
     email: str
+
+    events_count: Optional[int]
 
     class Config:
         orm_mode = True

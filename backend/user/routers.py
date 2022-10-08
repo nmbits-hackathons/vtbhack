@@ -8,7 +8,7 @@ from fastapi import (
 
 from database.models import BaseUser
 from user.base_adapter import UserDatabaseAdapter
-from crypto.routers import create_wallet
+from crypto.instructions import create_wallet
 
 router = APIRouter(prefix='/users', tags=['users'])
 
@@ -38,3 +38,8 @@ def get_users_list(left: int, right: int):
 def delete_user_by_id(user_id: int):
     UserDatabaseAdapter.delete_user(user_id=user_id)
     return {"user deleted"}
+
+
+@router.post('/user/add_event')
+def add_event_to_user(user_id: int):
+    UserDatabaseAdapter.add_event(user_id=user_id)

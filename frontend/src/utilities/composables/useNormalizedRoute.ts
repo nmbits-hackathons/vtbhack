@@ -6,7 +6,8 @@ const routeTranslations = {
   Home: "Мероприятия",
   Marketplace: "Маркетплейс",
   Collections: "Коллекции",
-  Rating: "Рейтинг"
+  Rating: "Рейтинг",
+  Record: "Запись"
 }
 
 export const useNormalizedRoute = (route: RouteRecordName | null | undefined) => {

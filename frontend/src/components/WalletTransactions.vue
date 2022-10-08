@@ -126,5 +126,9 @@ export default defineComponent({
       
     }
   }
+
+  .wallet__transaction_wrapper:not(:last-child) .transaction__info {
+    border-bottom: 1px solid rgb(var(--divider-primary));
+  }
 }
 </style>

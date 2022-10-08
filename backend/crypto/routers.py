@@ -33,8 +33,6 @@ def create_wallet() -> (str, str):  # public key, private key
 
 
 def get_nft_balance(address: str) -> str:
-    import requests
-
     url = f"https://hackathon.lsp.team/hk/v1/wallets/{address}/nft/balance"
 
     payload = {}
@@ -48,8 +46,6 @@ def get_nft_balance(address: str) -> str:
 
 
 def get_money_balance(address: str) -> str:
-    import requests
-
     url = f"https://hackathon.lsp.team/hk/v1/wallets/{address}/balance"
 
     payload = {}
@@ -62,10 +58,45 @@ def get_money_balance(address: str) -> str:
     return response.text
 
 
-def transfer_from_main_wallet():
-    pass
+def transfer_roubles(from_private: str, to_public: str,
+                     roubles: float):
+    url = "https://hackathon.lsp.team/hk/v1/transfers/ruble"
+
+    payload = json.dumps({
+        "fromPrivateKey": from_private,
+        "toPublicKey": to_public,
+        "amount": roubles
+    })
+    headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+    return response.text
+
+def transfer_nft(from_private: str, to_public: str, nft_id: int)
+    url = "https://hackathon.lsp.team/hk/v1/transfers/nft"
+
+    payload = json.dumps({
+        "fromPrivateKey": from_private,
+        "toPublicKey": to_public,
+        "tokenId": nft_id
+    })
+    headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+    return response
+
+def buy_nft(nft_id: int, buyer_private: str, seller_public: str, seller_private: str, buyer_public: str,
+            roubles: float):
+    transfer_nft(nft_id=nft_id, to_public=buyer_public, from_private=seller_private)
+    transfer_roubles(roubles=roubles, to_public=seller_public, from_private=buyer_private)
+
 
 
 if __name__ == '__main__':
     print(get_money_balance(MAIN_WALLET_KEYS[0]))
-

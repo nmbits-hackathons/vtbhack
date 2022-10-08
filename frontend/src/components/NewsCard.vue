@@ -22,7 +22,7 @@
       </div>
       <div class="record__dates">
         <h5>Даты</h5>
-        <span class="record__date">{{ record.date?.toLocaleDateString() }}</span>
+        <span class="record__date">{{ record.date?.toLocaleDateString('ru-RU', { month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }) }}</span>
       </div>
 
       <div class="record__part">

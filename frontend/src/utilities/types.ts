@@ -7,7 +7,8 @@ interface User {
 }
 
 interface Wallet {
-  wallet: string;
+  publicKey: string;
+  privateKey: string;
   matic?: number;
   coins?: number;
 }

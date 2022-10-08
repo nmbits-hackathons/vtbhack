@@ -2,7 +2,8 @@ import { Wallet } from "@/utilities/types";
 
 const initialState = () => {
   return {
-    wallet: ''
+    publicKey: '',
+    privateKey: ''
   } as Wallet
 }
 

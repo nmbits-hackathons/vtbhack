@@ -5,6 +5,8 @@ import events.routers as events_routers
 import marketplace.routers as marketplace_routers
 import uvicorn
 
+import database.database_adapter
+
 prefix_router = APIRouter(
     prefix='/api',
 )
@@ -18,4 +20,4 @@ app = FastAPI(title='VTB Hackaton MORE.Tech 4.0 API', docs_url='/')
 app.include_router(prefix_router)
 
 if __name__ == '__main__':
-    uvicorn.run('__main__:app', host='0.0.0.0', port=8000, reload=True)
+    uvicorn.run('__main__:app', host='127.0.0.1', port=8000, reload=True)

@@ -26,9 +26,9 @@
       </div>
 
       <div class="record__part">
-        <Checkbox v-model="isParticipated" :label="
-          isParticipated ? 'Участвую' : 'Участвовать'
-        "/>
+          <Checkbox @click="goToRecord" v-model="isParticipated" :label="
+            isParticipated ? 'Участвую' : 'Участвовать'
+          "/>
       </div>
     </div>
   </SurfaceComp>
@@ -41,6 +41,7 @@ import SurfaceComp from '@/components/SurfaceComp.vue'
 import Checkbox from '@/components/CheckboxComp.vue'
 import { NewsRecord, User } from '@/utilities/types'
 import { useStore } from 'vuex'
+import router from '@/router'
 
 export default defineComponent({
   components: {
@@ -53,7 +54,7 @@ export default defineComponent({
       required: true
     }
   },
-  setup() {
+  setup(props) {
     const store = useStore()
 
     const { value: user } = computed<User>(() => store.state.user)
@@ -88,6 +89,15 @@ export default defineComponent({
       }
     });
 
+    const goToRecord = () => {
+      router.push({
+        name: "Record",
+        params: {
+        record: btoa(unescape(encodeURIComponent(JSON.stringify(props.record))))
+        }
+      })
+    }
+
     onMounted(() => {
       calculateHeight();
     });
@@ -98,7 +108,8 @@ export default defineComponent({
       isParticipated,
       isWhiteSpace,
       description,
-      descriptionHeight
+      descriptionHeight,
+      goToRecord
     }
   },
 })

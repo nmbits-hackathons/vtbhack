@@ -61,6 +61,7 @@ class DataMarketplaceItem(Base):
     cost = Column(Integer)
     photo = Column(String)
 
+
 Base.metadata.create_all(engine)
 
 

@@ -16,12 +16,12 @@ router = APIRouter(
 @router.post('/create_event/', status_code=201)
 def create_post(event_model: BaseEvent):
     event_id = EventsDatabaseAdapter.create_event(event_model=event_model)
-    return {f"new evnt created with id: {event_id}"}
+    return event_id
 
 
 @router.get('/get_events/', status_code=201)
-def get_events(left:int, right:int):
-    return EventsDatabaseAdapter.get_events_list(left,right)
+def get_events(left: int, right: int):
+    return EventsDatabaseAdapter.get_events_list(left, right)
 
 
 @router.put('/update_evnt/', status_code=201)
@@ -29,7 +29,7 @@ def update_post():
     return 'test'
 
 
-@router.delete('/delete_evnt/', status_code=201)
+@router.delete('/delete_event/', status_code=201)
 def delete_post(evnet_id: int):
     EventsDatabaseAdapter.delete_event(evnet_id)
-    return {'envent deleted'}
+    return {'status': 'deleted'}

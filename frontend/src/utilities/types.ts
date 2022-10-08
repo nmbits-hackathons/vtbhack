@@ -12,7 +12,16 @@ interface Wallet {
   coins?: number;
 }
 
+interface NewsRecord {
+  type: string;
+  title?: string;
+  description?: string;
+  award?: string;
+  date?: Date;
+}
+
 export {
   User,
-  Wallet
+  Wallet,
+  NewsRecord
 }

@@ -24,6 +24,14 @@ class UserDatabaseAdapter:
             user = session.query(DataUser).filter(DataUser.id == user_id).delete()
 
     @staticmethod
+    def add_event(user_id: int):
+        with create_session() as session:
+            user_model = session.query(DataUser).get(user_id)
+            user_model.events_count += 1
+            session.commit()
+            return user_model
+
+    @staticmethod
     def update_user(user_id: int) -> None:
         pass
 

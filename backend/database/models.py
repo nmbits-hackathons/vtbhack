@@ -49,6 +49,18 @@ class DataEvent(Base):
     reward = Column(Integer)
 
 
+class DataMarketplaceItem(Base):
+    __tablename__ = 'Market'
+
+    id = Column(Integer, primary_key=True)
+
+    type = Column(String)
+    title = Column(String)
+    description = Column(String)
+    date = Column(String)
+    cost = Column(Integer)
+    photo = Column(String)
+
 Base.metadata.create_all(engine)
 
 
@@ -106,3 +118,16 @@ class ResponseEvent(BaseEvent):
 class EventSeries(BaseModel):
     number_of_events: int = 0
     series: List[ResponseEvent] = []
+
+
+class BaseMarketplaceItem(BaseModel):
+    type: str
+    title: str
+    description: str
+    date: str
+    cost: int
+    photo: str
+
+    class Config:
+        orm_mode = True
+        orm_mode = True

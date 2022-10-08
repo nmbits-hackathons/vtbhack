@@ -31,10 +31,26 @@ interface TransactionsData {
   transactions: TransactionSummary[]
 }
 
+interface MarketplaceItem {
+  image: string;
+  price: number;
+  title: string;
+  size?: 'sm' | 'md' | 'big';
+}
+
+interface NFTItem {
+  image: string;
+  collection: string;
+  title: string;
+  size?: 'sm' | 'md' | 'big';
+}
+
 export {
   User,
   Wallet,
   NewsRecord,
   TransactionSummary,
-  TransactionsData
+  TransactionsData,
+  MarketplaceItem,
+  NFTItem
 }

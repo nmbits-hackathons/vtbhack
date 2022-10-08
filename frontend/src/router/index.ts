@@ -17,13 +17,13 @@ const routes: Array<RouteRecordRaw> = [
     path: "/market",
     name: "Marketplace",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+      import(/* webpackChunkName: "about" */ "../views/MarketplaceView.vue"),
   },
   {
     path: "/collection",
     name: "Collections",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+      import(/* webpackChunkName: "about" */ "../views/CollectionsView.vue"),
   },
   {
     path: "/rating",
@@ -36,6 +36,12 @@ const routes: Array<RouteRecordRaw> = [
     name: "Record",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/RecordView.vue"),
+  },
+  {
+    path: "/exchange/:id",
+    name: "Exchange",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/SwapView.vue"),
   },
   
 ];

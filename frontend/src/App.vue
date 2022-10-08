@@ -108,7 +108,7 @@ main {
 
   @media (min-width: 1200px) {
     grid: 'route route' min-content
-          "menu content" 1fr / 260px 762px;
+          "menu content" 1fr / 260px minmax(760px, 50%);
     ;
     gap: 32px 64px;
     padding-bottom: 16px;

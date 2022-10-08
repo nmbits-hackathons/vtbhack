@@ -405,3 +405,5 @@ storybook-static
 
 
 backend/venv
+
+backend/app.db

@@ -9,7 +9,8 @@ from fastapi import (
 from database.models import BaseUser
 from database.models import BaseMarketplaceItem
 from marketplace.market_base_adapter import MarketDatabaseAdapter
-
+from user.routers import get_user_by_id
+from crypto.routers import buy_nft
 
 router = APIRouter(
     prefix='/marketplace',
@@ -27,14 +28,10 @@ def get_items():
 
 @router.post('/add_item/')
 def add_item(
-    item: BaseMarketplaceItem,
-    user: BaseUser,
+        item: BaseMarketplaceItem,
 ):
-    if user.admin_role:   
-        item_id = MarketDatabaseAdapter.create_item(item_model=item)
-        return {f"new item created with id: {item_id}"}
-
-    return {"no permission to add items"}
+    item_id = MarketDatabaseAdapter.create_item(item_model=item)
+    return item_id
 
 
 @router.get('/get_item_by_id/', status_code=200)
@@ -47,12 +44,21 @@ def get_item_by_id(item_id: int):
 
 @router.delete('/delete_item_by_id/', status_code=200)
 def delete_item_by_id(
-    item_id: int, 
-    user: BaseUser,
+        item_id: int,
 ):
-    if user.admin_role:
-        MarketDatabaseAdapter.delete_item(item_id=item_id)
-        return {"item deleted"}
-    return {"no permission to delete items"}
+    MarketDatabaseAdapter.delete_item(item_id=item_id)
+    return 200
 
 
+@router.post('/buy_nft/')
+def buy_nft_route(
+        item_id: int,
+        user_id: int,
+):
+    buyer = get_user_by_id(user_id=user_id)
+    item = get_item_by_id(item_id=item_id)
+    seller = get_user_by_id(user_id=item.nft_owner_id)
+
+    buy_nft(nft_id=item.nft_id, buyer_public=buyer.public_key, seller_public=seller.public_key,
+            buyer_private=buyer.private_key, seller_private=seller.private_key, roubles=item.cost)
+    return 200

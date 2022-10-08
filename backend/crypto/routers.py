@@ -75,7 +75,8 @@ def transfer_roubles(from_private: str, to_public: str,
     response = requests.request("POST", url, headers=headers, data=payload)
     return response.text
 
-def transfer_nft(from_private: str, to_public: str, nft_id: int)
+
+def transfer_nft(from_private: str, to_public: str, nft_id: int):
     url = "https://hackathon.lsp.team/hk/v1/transfers/nft"
 
     payload = json.dumps({
@@ -91,11 +92,11 @@ def transfer_nft(from_private: str, to_public: str, nft_id: int)
     response = requests.request("POST", url, headers=headers, data=payload)
     return response
 
+
 def buy_nft(nft_id: int, buyer_private: str, seller_public: str, seller_private: str, buyer_public: str,
             roubles: float):
     transfer_nft(nft_id=nft_id, to_public=buyer_public, from_private=seller_private)
     transfer_roubles(roubles=roubles, to_public=seller_public, from_private=buyer_private)
-
 
 
 if __name__ == '__main__':

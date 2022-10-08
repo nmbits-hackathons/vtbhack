@@ -60,6 +60,9 @@ class DataMarketplaceItem(Base):
     date = Column(String)
     cost = Column(Integer)
     photo = Column(String)
+    nft_id = Column(Integer)
+    nft_owner_id = Column(Integer)
+
 
 Base.metadata.create_all(engine)
 
@@ -128,6 +131,8 @@ class BaseMarketplaceItem(BaseModel):
     cost: int
     photo: str
 
+    nft_id: Optional[int]
+    nft_owner_id: Optional[int]
+
     class Config:
-        orm_mode = True
         orm_mode = True

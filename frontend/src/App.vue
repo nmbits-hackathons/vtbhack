@@ -16,6 +16,7 @@ import HeaderComp from '@/components/HeaderComp.vue'
 import MenuComp from '@/components/MenuComp.vue'
 import { useRoute } from 'vue-router'
 import { useNormalizedRoute } from '@/utilities/composables/useNormalizedRoute'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   components: {
@@ -23,8 +24,12 @@ export default defineComponent({
     MenuComp
   },
   setup() {
+    const store = useStore()
     const route = useRoute()
-    const normalizedRoute = computed(() => useNormalizedRoute(route.name))
+    const normalizedRoute = computed(() => {
+      if (route.name == 'Profile') return store.getters['user/getFullName']
+      else return useNormalizedRoute(route.name)
+    })
 
     return {
       normalizedRoute
@@ -54,9 +59,10 @@ export default defineComponent({
   --button-primary-text: 255 255 255;
   --button-primary-hover: 18 39 144;
 
-  --button-secondary: 244 247 251;
+  --button-secondary: 255 255 255;
   --button-secondary-text: 0 0 0;
-  --button-secondary-hover: 255 255 255;
+  --button-secondary-hover: 244 247 251;
+  --button-secondary-border: 1px solid rgb(var(--divider-primary));
 
   --transition: all 0.2s ease-in-out;
 

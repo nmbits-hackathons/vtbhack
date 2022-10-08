@@ -1,3 +1,5 @@
+import store from "@/store"
+import { userModule } from "@/store/user"
 import { RouteRecord, RouteRecordName } from "vue-router"
 
 const routeTranslations = {

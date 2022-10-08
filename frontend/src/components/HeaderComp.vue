@@ -54,6 +54,7 @@ nav {
   display: flex;
   justify-content: space-between;
   gap: 8px;
+  z-index: 1;
 
   .nav__account {
     display: flex;

@@ -21,8 +21,20 @@ interface NewsRecord {
   date?: Date;
 }
 
+interface TransactionSummary {
+  amount: string;
+  transactionType: 'marketplace' | 'events' | 'thanks'| 'nft';
+}
+
+interface TransactionsData {
+  date: Date,
+  transactions: TransactionSummary[]
+}
+
 export {
   User,
   Wallet,
-  NewsRecord
+  NewsRecord,
+  TransactionSummary,
+  TransactionsData
 }

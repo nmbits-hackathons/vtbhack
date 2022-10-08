@@ -52,7 +52,8 @@ export default defineComponent({
   }
 }
 
-:deep( h1.route__name) {
+//TODO: add point to header
+:deep(h1.route__name) {
   &::after {
     content: v-bind(news_lenght);
     position: absolute;

@@ -30,9 +30,7 @@ def add_item(
     item: BaseMarketplaceItem,
     user: BaseUser,
 ):
-    add_item_permission = ["admin"]
-
-    if user.role in add_item_permission:   
+    if user.admin_role:   
         item_id = MarketDatabaseAdapter.create_item(item_model=item)
         return {f"new item created with id: {item_id}"}
 
@@ -52,9 +50,7 @@ def delete_item_by_id(
     item_id: int, 
     user: BaseUser,
 ):
-    delete_item_by_id_permission = ["admin"]
-
-    if user.role in delete_item_by_id_permission:
+    if user.admin_role:
         MarketDatabaseAdapter.delete_item(item_id=item_id)
         return {"item deleted"}
     return {"no permission to delete items"}

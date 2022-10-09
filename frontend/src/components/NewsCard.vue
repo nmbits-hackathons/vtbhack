@@ -18,15 +18,15 @@
     <div class="record__actions">
       <div class="record__award">
         <h5>Вознаграждение</h5>
-        <h2 class="record__currency">{{ record.award }}</h2>
+        <h2 class="record__currency">{{ record.reward }} ₽</h2>
       </div>
       <div class="record__dates">
         <h5>Даты</h5>
-        <span class="record__date">{{ record.date?.toLocaleDateString('ru-RU', { month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }) }}</span>
+        <span class="record__date">{{ new Date(record.date_event).toLocaleDateString('ru-RU', { month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }) }}</span>
       </div>
 
       <div class="record__part">
-          <Checkbox @click="goToRecord" v-model="isParticipated" :label="
+          <Checkbox v-model="isParticipated" :label="
             isParticipated ? 'Участвую' : 'Участвовать'
           "/>
       </div>
@@ -39,7 +39,7 @@ import { computed, defineComponent, nextTick, onMounted, ref, watch } from 'vue'
 
 import SurfaceComp from '@/components/SurfaceComp.vue'
 import Checkbox from '@/components/CheckboxComp.vue'
-import { NewsRecord, User } from '@/utilities/types'
+import { Event, User } from '@/utilities/types'
 import { useStore } from 'vuex'
 import router from '@/router'
 
@@ -50,7 +50,7 @@ export default defineComponent({
   },
   props: {
     record: {
-      type: Object as () => NewsRecord,
+      type: Object as () => Event,
       required: true
     }
   },

@@ -1,9 +1,28 @@
 interface User {
   id: string;
   email?: string;
-  first_name?: string;
-  last_name?: string;
-  role?: 'user' | 'moderator' | 'admin';
+  name?: string;
+  admin_role?: boolean,
+  permission_nft_release?: boolean,
+  permission_transfer_treasury?: boolean,
+  permission_moderate_marketplace?: boolean,
+  permission_events?: boolean,
+  publicKey: string,
+  privateKey: string
+}
+
+interface Event {
+  title: string,
+  description?: string,
+  date_publication?: Date,
+  date_event?: Date,
+  creator?: number,
+  type: string,
+  reward?: number
+}
+
+interface Utilities {
+  events?: Event[]
 }
 
 interface Wallet {
@@ -11,14 +30,7 @@ interface Wallet {
   privateKey: string;
   matic?: number;
   coins?: number;
-}
-
-interface NewsRecord {
-  type: string;
-  title?: string;
-  description?: string;
-  award?: string;
-  date?: Date;
+  history?: any[];
 }
 
 interface TransactionSummary {
@@ -31,10 +43,27 @@ interface TransactionsData {
   transactions: TransactionSummary[]
 }
 
+interface MarketplaceItem {
+  image: string;
+  price: number;
+  title: string;
+  size?: 'sm' | 'md' | 'big';
+}
+
+interface NFTItem {
+  image: string;
+  collection: string;
+  title: string;
+  size?: 'sm' | 'md' | 'big';
+}
+
 export {
   User,
   Wallet,
-  NewsRecord,
   TransactionSummary,
-  TransactionsData
+  TransactionsData,
+  MarketplaceItem,
+  NFTItem,
+  Utilities,
+  Event
 }

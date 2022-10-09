@@ -8,17 +8,24 @@ const emailRegExp =
 
 
 const defaultWalletUrl = 'https://hackathon.lsp.team/hk'
-const defaultBackUrl = ''
+const defaultBackUrl = 'http://45.67.228.220:7171'
 
 const apiWallet = `${process.env.VUE_APP_WALLET_SERVER || defaultWalletUrl}/`
+const apiBack = `${process.env.VUE_APP_BACK_SERVER || defaultBackUrl}/`
 
 const instance_wallet = axios.create({
   withCredentials: false,
   baseURL: apiWallet
 })
 
+const instance_user = axios.create({
+  withCredentials: false,
+  baseURL: apiBack,
+  })
+
 export {
   cookies,
   emailRegExp,
-  instance_wallet
+  instance_wallet,
+  instance_user
 }

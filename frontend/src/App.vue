@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, onMounted } from 'vue'
 
 import HeaderComp from '@/components/HeaderComp.vue'
 import MenuComp from '@/components/MenuComp.vue'
@@ -29,6 +29,10 @@ export default defineComponent({
     const normalizedRoute = computed(() => {
       if (route.name == 'Profile') return store.getters['user/getFullName']
       else return useNormalizedRoute(route.name)
+    })
+
+    onMounted(() => {
+      store.dispatch('user/init')
     })
 
     return {
@@ -104,7 +108,7 @@ main {
 
   @media (min-width: 1200px) {
     grid: 'route route' min-content
-          "menu content" 1fr / 260px 762px;
+          "menu content" 1fr / 260px minmax(760px, 50%);
     ;
     gap: 32px 64px;
     padding-bottom: 16px;

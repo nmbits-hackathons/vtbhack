@@ -2,9 +2,8 @@ import { User } from "@/utilities/types";
 
 const initialState = () => {
   return {
-    id: '1',
-    first_name: "Александр",
-    last_name: "Грин"
+    id: '6',
+    name: "Александр Грин"
   } as User
 }
 

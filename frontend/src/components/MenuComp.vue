@@ -11,6 +11,7 @@
         :key="link.route.name"
       >
         <span class="link__icon">
+          <!-- TODO: paint only icon -->
           <component :is="
             defineAsyncComponent(() => 
               import(`@/components/Icons/${link.icon}.vue`))

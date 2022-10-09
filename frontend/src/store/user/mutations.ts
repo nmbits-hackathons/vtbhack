@@ -4,7 +4,7 @@ import { User } from "@/utilities/types";
 
 const userModuleMutations = <MutationTree<User>>{
   setState(context, { key, value }) {
-    context[key as keyof User] = value;
+    (context as any)[key as keyof User] = value;
   },
   flushState(state) {
     Object.assign(state, initialState());

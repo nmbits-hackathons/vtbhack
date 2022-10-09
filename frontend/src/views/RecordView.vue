@@ -21,11 +21,11 @@
       </div>
       <div class="record__field">
         <h5>Вознаграждение</h5>
-        <input type="text" v-maska="'#*.#* ₽'" v-model="routeRecord.award">
+        <input type="text" v-maska="'#*.#* ₽'" v-model="routeRecord.reward">
       </div>
       <div class="record__field">
         <h5>Дата проведения</h5>
-        <input type="date" v-model="routeRecord.date">
+        <input type="date" v-model="routeRecord.date_event">
       </div>
     </div>
 
@@ -43,7 +43,7 @@ import Surface from '@/components/SurfaceComp.vue'
 import Button from '@/components/ButtonComp.vue'
 import { useRoute } from 'vue-router'
 
-import { NewsRecord } from '@/utilities/types'
+import { Event } from '@/utilities/types'
 
 export default defineComponent({
   components: {
@@ -54,12 +54,14 @@ export default defineComponent({
     const date_pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
     const route = useRoute()
 
-    const routeRecord = reactive<NewsRecord>({
-      type: '',
-      title: "",
-      description: '',
-      award: '',
-      date: new Date()
+    const routeRecord = reactive<Event>({
+      title: '',
+      description: "",
+      date_publication: new Date(),
+      date_event: new Date(),
+      creator: 0,
+      type: 'Митап',
+      reward: 0
     })
 
     try {

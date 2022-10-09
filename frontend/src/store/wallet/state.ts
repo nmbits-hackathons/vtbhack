@@ -2,8 +2,8 @@ import { Wallet } from "@/utilities/types";
 
 const initialState = () => {
   return {
-    publicKey: '',
-    privateKey: ''
+    matic: 1200.83,
+    coins: 345.35
   } as Wallet
 }
 

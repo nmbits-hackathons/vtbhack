@@ -1,15 +1,15 @@
 module.exports = {
   pwa: {
     manifestOptions: {
-      name: "",
-      short_name: "",
+      name: "ВТБ.Коллеги",
+      short_name: "Коллеги",
       start_url: ".",
       display: "standalone",
-      theme_color: "#FFFFFF",
+      theme_color: "#3264F6",
     },
 
-    themeColor: "#FFFFFF",
-    msTileColor: "#FFFFFF",
+    themeColor: "#3264F6",
+    msTileColor: "#3264F6",
     appleMobileWebAppCapable: "yes",
     appleMobileWebAppStatusBarStyle: "black-translucent",
   },

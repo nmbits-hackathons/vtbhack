@@ -1,7 +1,9 @@
 <template>
   <div class="marketplace__wrapper">
     <div class="marketplace__items">
-      <router-link :to="'/'" class="marketplace__exchange_nft">
+      <router-link :to="{
+        name: 'Collections'
+      }" class="marketplace__exchange_nft">
         <h2>Обменивайте<br>NFT на товары</h2>
         <p>Попробуйте</p>
       </router-link>

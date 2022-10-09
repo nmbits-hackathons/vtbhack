@@ -13,12 +13,12 @@ interface User {
 
 interface Event {
   title: string,
-  description: "",
-  date_publication: Date,
-  date_event: Date,
-  creator: number,
+  description?: string,
+  date_publication?: Date,
+  date_event?: Date,
+  creator?: number,
   type: string,
-  reward: number
+  reward?: number
 }
 
 interface Utilities {

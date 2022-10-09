@@ -48,3 +48,5 @@ cd ../frontend
 yarn && yarn serve
 ```
 
+сервис будет доступен по адресу http://localhost:8080
+

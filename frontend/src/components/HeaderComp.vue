@@ -10,9 +10,8 @@
         id: user.id
       }
     }" class="nav__account">
-      <HumanIcon/>
-
-      <span class="nav__user">{{ user.first_name }} {{ user.last_name }}</span>
+      <span class="nav__user">{{ user.name }}</span>
+      <ExitIcon/>
     </router-link>
   </nav>
 </template>
@@ -21,11 +20,11 @@
 import { User } from '@/utilities/types'
 import { computed, defineComponent } from 'vue'
 import { useStore } from 'vuex'
-import HumanIcon from './Icons/HumanIcon.vue'
+import ExitIcon from './Icons/ExitIcon.vue'
 
 export default defineComponent({
   components: {
-    HumanIcon
+    ExitIcon
   },
   setup() {
     const store = useStore()

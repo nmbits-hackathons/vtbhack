@@ -6,7 +6,7 @@ const userModuleGetters = <GetterTree<User, any>>{
     return context[key];
   },
   getFullName(context) {
-    return `${context.first_name} ${context.last_name}`
+    return `${context.name}`
   }
 };
 

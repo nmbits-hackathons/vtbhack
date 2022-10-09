@@ -3,7 +3,7 @@
 
     <div class="wallet__currencies">
       <h3>Кошелёк</h3>
-      <h2 class="wallet__roubles">1493,40 ₽<h5 class="wallet__matic">100K GAS</h5></h2>
+      <h2 class="wallet__roubles">{{ wallet.coins?.toFixed(2) }} ₽<h5 class="wallet__matic">{{ wallet.matic?.toFixed(2) }} GAS</h5></h2>
     </div>
 
     <div class="wallet__actions">
@@ -28,11 +28,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 
 import Surface from '@/components/SurfaceComp.vue'
 import Button from '@/components/ButtonComp.vue'
 import { useStore } from 'vuex'
+import { Wallet } from '@/utilities/types'
 
 export default defineComponent({
   components: {
@@ -42,8 +43,10 @@ export default defineComponent({
   setup() {
     const store = useStore()
 
+    const { value: wallet } = computed<Wallet>(() => store.state.wallet)
+
     return {
-      store 
+      wallet 
     }
   },
 })

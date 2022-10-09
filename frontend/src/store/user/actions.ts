@@ -4,16 +4,24 @@ import { instance_user } from "@/utilities/config";
 
 const userModuleActions = <ActionTree<User, null>>{
   init(context) {
-    instance_user({
-      method: 'GET',
-      url: '/api/users/get_user_by_id/',
-      params: {
-        user_id: '1'
-      }
-    }).then((res) => {
-      console.log(res);
+    return new Promise((resolve, reject) => {
+      instance_user({
+        method: 'GET',
+        url: '/api/users/get_user_by_id/',
+        params: {
+          user_id: '6'
+        }
+      }).then((res) => {
+        Object.entries(res.data).forEach(([key, field]) => {
+          context.commit('setState', {
+            key: key,
+            value: field
+          })
+        });
+        resolve(res)
+      })
+      .catch((e) => reject(e))
     })
-    .catch((e) => console.log(e))
   }
 };
 

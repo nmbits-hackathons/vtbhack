@@ -3,7 +3,7 @@
     <h3>Топ-{{rating.length}} за сегодня</h3>
 
     <div class="rating__wrapper" v-for="(person, number) in rating" :key="number">
-      <div class="rating__icon">{{number}}</div>
+      <div class="rating__icon">{{number+1}}</div>
 
       <div class="rating__info">
         <div class="rating__name">
@@ -67,6 +67,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .rating {
   padding: 16px 16px 8px;
+  height: fit-content;
   
   @media (min-width: 768px) {
     padding: 24px 24px 8px;

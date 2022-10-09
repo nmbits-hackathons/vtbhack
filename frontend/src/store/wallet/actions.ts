@@ -1,19 +1,33 @@
 import { ActionTree } from "vuex";
 import { Wallet } from "@/utilities/types";
 import { instance_wallet } from "@/utilities/config";
+import store from "..";
 
 const walletModuleActions = <ActionTree<Wallet, null>>{
   async init(context) {
-    const { data } = await instance_wallet.post('/v1/wallets/new')
+    const { data: balance } = await instance_wallet.get(`/v1/wallets/${
+      store.state!['user']['public_key']
+    }/balance`)
+    const { data: history } = await instance_wallet.post(`/v1/wallets/${store.state!['user']['public_key']}/history`, {
+      "page": 100,
+      "offset": 20,
+      "sort": "asc"
+    })
 
     context.commit('setState', {
-      key: 'publicKey',
-      value: data.publicKey
+      key: 'matic',
+      value: balance.maticAmount
     })
     context.commit('setState', {
-      key: 'privateKey',
-      value: data.privateKey
+      key: 'coins',
+      value: balance.coinsAmount
     })
+
+    context.commit('setState', {
+      key: 'history',
+      value: history.history
+    })
+
   },
   transferMatic({state}, {toPublicKey, amount}) {
     return new Promise((resolve, reject) => {

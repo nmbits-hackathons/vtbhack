@@ -9,11 +9,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, onBeforeMount, ref } from 'vue'
 
 import ProfileWallet from '@/components/ProfileWallet.vue'
 import WalletTransactions from '@/components/WalletTransactions.vue'
 import { TransactionsData } from '@/utilities/types'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   components: {
@@ -21,6 +22,8 @@ export default defineComponent({
     WalletTransactions
   },
   setup() {
+    const store = useStore()
+
     const transactions = ref<TransactionsData[]>([
       {
         date: new Date(),
@@ -65,6 +68,10 @@ export default defineComponent({
         ]
       },
     ])
+
+    onBeforeMount(() => {
+      store.dispatch('wallet/init')
+    })
 
     return {
       transactions

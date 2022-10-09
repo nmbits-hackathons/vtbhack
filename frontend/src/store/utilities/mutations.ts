@@ -1,14 +1,14 @@
 import { MutationTree } from "vuex";
 import { initialState } from "./state";
-import { User } from "@/utilities/types";
+import { Utilities } from "@/utilities/types";
 
-const userModuleMutations = <MutationTree<User>>{
+const utilitiesModuleMutations = <MutationTree<Utilities>>{
   setState(context, { key, value }) {
-    (context as any)[key as keyof User] = value;
+    context[key as keyof Utilities] = value;
   },
   flushState(state) {
     Object.assign(state, initialState());
   },
 }
 
-export { userModuleMutations }
+export { utilitiesModuleMutations }

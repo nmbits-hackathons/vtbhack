@@ -29,10 +29,7 @@
 
 ## Демо
 
-<!-- сслыка на видос -->
-
-<!-- ![Demo](demo.png) -->
-
+[Ссылка на видео](https://drive.google.com/file/d/18p5yCJzgwyBo9lMYQ1ArEuaAi56l-TSg/view)
 
 ## Локальный запуск
 
